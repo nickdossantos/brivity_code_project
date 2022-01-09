@@ -166,6 +166,7 @@ GEM
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    render_async (2.1.11)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -206,6 +207,8 @@ GEM
       sprockets (>= 3.0.0)
     thor (1.2.1)
     tilt (2.0.10)
+    trix (0.10.1)
+      rails
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -242,10 +245,12 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4, >= 6.1.4.4)
+  render_async
   rspec-rails
   sass-rails (>= 6)
   spring
   sprockets (>= 3.0.0)
+  trix
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 4.1.0)

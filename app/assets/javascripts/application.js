@@ -14,21 +14,10 @@
 //= require turbolinks
 
 //<!-- Core JS -->
-// require jquery3
-// require popper
-// require bootstrap
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
 
 //<!-- App JS -->
 //= require ./theme/material-kit.js
-
-toastr.options.timeOut = 1500; // How long the toast will display without user interaction
-toastr.options.extendedTimeOut = 800; // How long the toast will display after a user hovers over it
-
-//<!-- for bootstrap popover, opens the popover on hover -->
-document.addEventListener("turbolinks:load", function(){
-  $('.has-tooltip').tooltip();
-  $('.has-popover').popover({
-    container: 'body', //adpots bodys containter so popover can overlay small columns
-    trigger: 'hover'
-  });
-});
+//= require trix

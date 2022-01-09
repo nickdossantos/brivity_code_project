@@ -28,4 +28,5 @@
 
 <br>
 
-<%= link_to 'New Post', new_post_path %>
+<%= render 'post_modal' %>
+<%= link_to 'New Post', new_author_post_path(current_user.id), remote: true  if current_user%>

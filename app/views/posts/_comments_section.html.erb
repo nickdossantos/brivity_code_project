@@ -1,0 +1,4 @@
+<%= render_async post_comments_path(post) %>
+<p>Add comment</p>
+
+<%= render partial: 'comments/form', locals: { author: post.author, post: post, comment: Comment.new } %>
