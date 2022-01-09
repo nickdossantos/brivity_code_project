@@ -52,7 +52,9 @@ gem 'devise'
 # Fake data generation
 gem 'faker'
 # Icons
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
 gem 'jquery-rails'
+gem 'render_async'
+gem 'trix'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

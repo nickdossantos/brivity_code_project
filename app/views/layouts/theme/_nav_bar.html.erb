@@ -17,13 +17,11 @@
     <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0" id="navigation">
       <ul class="navbar-nav navbar-nav-hover mx-auto">
         <li class="nav-item mx-2">
-          <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center" role="button">
-            Posts
-          </a>
+          <%= link_to "Posts", posts_path, class: "nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center" %>
         </li>
 
         <li class="nav-item mx-2">
-          <%= link_to "Profile", edit_user_registration_path, class: "nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center" %>
+          <%= link_to "Profile", author_path(current_user), class: "nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center" if current_user%>
         </li>
         <li class="nav-item ms-lg-auto">
           <a class="nav-link nav-link-icon me-2" href="https://github.com/nickdossantos/brivity_code_project" target="_blank">

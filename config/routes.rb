@@ -1,8 +1,17 @@
 Rails.application.routes.draw do
   devise_for :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root to: 'posts#index'
+  get '/', to: 'posts#index', as: 'homepage'
+  get '/home', to: 'posts#index'
+
+  resources :authors do
+    resources :posts do
+      resources :comments, only: %i[new create]
+    end
+    resources :comments
+  end
+  resources :posts do
+    resources :comments, only: [:index]
+  end
   resources :users
-  root to: 'pages#homepage'
-  get '/', to: 'pages#homepage', as: 'homepage'
-  get '/home', to: 'pages#homepage'
 end
