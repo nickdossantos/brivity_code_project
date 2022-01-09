@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get '/', to: 'posts#index', as: 'homepage'
   get '/home', to: 'posts#index'
 
-  resources :author do
+  resources :authors do
     resources :posts do
       resources :comments, only: %i[new create]
     end

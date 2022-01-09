@@ -1,7 +1,12 @@
 class AuthorsController < ApplicationController
-  before_action :set_author, only: %i[show edit update destroy]
+  before_action :set_author, only: %i[edit update destroy]
   # GET /authors/1 or /authors/1.json
-  def show; end
+  def show
+    @author = Author.includes(:posts, :comments).find(params[:id])
+    # Number of posts
+    # Comments index
+    # Posts index paginated
+  end
 
   # GET /authors/new
   def new
@@ -9,7 +14,11 @@ class AuthorsController < ApplicationController
   end
 
   # GET /authors/1/edit
-  def edit; end
+  def edit
+    respond_to do |format|
+      format.js
+    end
+  end
 
   # POST /authors or /authors.json
   def create
@@ -17,11 +26,9 @@ class AuthorsController < ApplicationController
 
     respond_to do |format|
       if @author.save
-        format.html { redirect_to author_url(@author), notice: "Author was successfully created." }
-        format.json { render :show, status: :created, location: @author }
+        format.js
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @author.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -30,11 +37,9 @@ class AuthorsController < ApplicationController
   def update
     respond_to do |format|
       if @author.update(author_params)
-        format.html { redirect_to author_url(@author), notice: "Author was successfully updated." }
-        format.json { render :show, status: :ok, location: @author }
+        format.js
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @author.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -58,6 +63,6 @@ class AuthorsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def author_params
-    params.require(:author).permit(:body, :user_id, :post_id)
+    params.require(:author).permit(:body, :user_id, :post_id, :first_name, :last_name, :description)
   end
 end
