@@ -1,0 +1,2 @@
+$('#sessionsModal .modal-content').html('<%= j render partial: "form", locals: { resource_name: :user, resource: @resource ||= User.new, resource_class: User, devise_mapping:  @devise_mapping ||= Devise.mappings[:user]} %>');
+$('#sessionsModal').modal('show');

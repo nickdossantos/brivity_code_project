@@ -1,12 +1,8 @@
-<!-- Navbar Dark -->
-
-<nav
-  class="navbar navbar-expand-lg navbar-dark bg-gradient-dark z-index-3 py-3">
+<nav class="navbar navbar-expand-lg navbar-dark bg-gradient-dark py-3">
   <div class="container">
-    <a class="navbar-brand text-white" href="https://demos.creative-tim.com/material-kit/presentation" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom" target="_blank">
-      Briviy Code Project
+    <a class="navbar-brand" href="/" data-placement="bottom">
+      Brivity Code Project
     </a>
-    <a href="https://www.creative-tim.com/product/material-design-system-pro#pricingCard" class="btn btn-sm  bg-gradient-primary  btn-round mb-0 ms-auto d-lg-none d-block">Buy Now</a>
     <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon mt-2">
         <span class="navbar-toggler-bar bar1"></span>
@@ -14,38 +10,32 @@
         <span class="navbar-toggler-bar bar3"></span>
       </span>
     </button>
-    <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0" id="navigation">
-      <ul class="navbar-nav navbar-nav-hover mx-auto">
-        <li class="nav-item mx-2">
+    <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0 ms-lg-12 ps-lg-5" id="navigation">
+      <ul class="navbar-nav navbar-nav-hover ms-auto">
+        <li class="nav-item dropdown dropdown-hover mx-2">
           <%= link_to "Posts", posts_path, class: "nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center" %>
         </li>
-
-        <li class="nav-item mx-2">
+        <li class="nav-item dropdown dropdown-hover mx-2">
           <%= link_to "Profile", author_path(current_user), class: "nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center" if current_user%>
         </li>
         <li class="nav-item ms-lg-auto">
           <a class="nav-link nav-link-icon me-2" href="https://github.com/nickdossantos/brivity_code_project" target="_blank">
             <i class="fa fa-github me-1" aria-hidden="true"></i>
-            <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Star us on Github">Github</p>
+            <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Star us on Github">Github</p>
           </a>
         </li>
-      </ul>
-
-      <ul class="navbar-nav navbar-nav-hover mx-auto">        
-        <%if user_signed_in?%>
+        <li class="nav-item my-auto ms-3 ms-lg-0">
+          <%if user_signed_in?%>
           <li class="nav-item mx-2">
             <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-sm  bg-gradient-primary  mb-0 me-1" %>
           </li>
-        <% else %>
-          <li class="nav-item mx-2">
-            <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-sm  bg-gradient-primary ps-2 d-flex" %>
-          </li>
-          <li class="nav-item mx-2">
-            <%= link_to "Sign In", new_user_session_path, class: "btn btn-sm  bg-gradient-primary ps-2 d-flex" %>
-          </li>
-        <% end %>
+          <% else %>
+            <li class="nav-item mx-2">
+              <%= link_to "Sign In", new_user_session_path, class: "btn btn-sm  bg-gradient-primary ps-2 d-flex", remote: true%>
+            </li>
+          <% end %>
+        </li>
       </ul>
     </div>
   </div>
 </nav>
-<!-- End Navbar -->

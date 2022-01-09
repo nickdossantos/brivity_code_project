@@ -1,0 +1,13 @@
+<div id="comments-section">
+<p id="notice"><%= notice %></p>
+<h3>Comments</h3>
+<div class="row">
+  <ul id="comments-list" class="list-group list-group-flush">
+    <%= render partial: 'comments/comment_item', collection: comments, as: :comment%>
+  </ul>
+  <br>
+  <span class="float: right"><%= paginate comments, remote: true %> </span>
+  <p>Add comment</p>
+  <%= render partial: 'comments/form', locals: { author: post.author, post: post, comment: Comment.new } %>
+</div>
+<div>

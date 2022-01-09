@@ -1,0 +1,3 @@
+$('#comments-section').replaceWith("<%= j render partial: 'comment_section', locals: { post: @post, comments: @comments} %>");
+$('#authorModal').modal('toggle');
+

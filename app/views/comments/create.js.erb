@@ -1,1 +1,2 @@
-alert('comment created');
+$('#comments-list').append("<%= j render partial: 'comment_item', locals: { comment: @comment } %>");
+$('#comment-text-area-input').val('');
