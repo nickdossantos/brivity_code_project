@@ -15,6 +15,7 @@
   <%= @post.user_id %>
 </p>
 
+<%= link_to @post.author.full_name, author_path(@post.author) %>
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
 
