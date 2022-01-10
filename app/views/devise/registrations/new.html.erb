@@ -5,9 +5,22 @@
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.text_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+    <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true, required: true %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.email_field :last_name, autofocus: true, required: true %>
   </div>
 
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description, autofocus: true, required: true %>
+  </div>
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>

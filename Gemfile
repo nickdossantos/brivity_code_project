@@ -47,6 +47,7 @@ group :development do
 end
 
 gem 'bootstrap', '~> 5.1.3'
+gem 'bootstrap5-kaminari-views'
 # Authentication
 gem 'devise'
 # Fake data generation
@@ -54,6 +55,7 @@ gem 'faker'
 # Icons
 gem 'font-awesome-rails'
 gem 'jquery-rails'
+gem 'kaminari'
 gem 'render_async'
 gem 'trix'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

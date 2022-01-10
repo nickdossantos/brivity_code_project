@@ -1,0 +1,10 @@
+<li class="list-group-item">
+  <div class="row">
+    <div class="col-lg-3 col-sm-6">
+      <p><%= link_to comment.author.full_name.blank? ? comment.author.email : comment.author.full_name, author_path(comment.author)%>: </p>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+      <p><%= comment.body %> <p>
+    </div>
+  </div>
+</li>

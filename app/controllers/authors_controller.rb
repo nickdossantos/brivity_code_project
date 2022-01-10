@@ -1,11 +1,14 @@
 class AuthorsController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[show]
   before_action :set_author, only: %i[edit update destroy]
   # GET /authors/1 or /authors/1.json
   def show
-    @author = Author.includes(:posts, :comments).find(params[:id])
-    # Number of posts
-    # Comments index
-    # Posts index paginated
+    response = AuthorDisplayService.new({ author_params: params }).call
+
+    not_found and return unless response.success?
+
+    @author = response.author
+    @latest_posts = response.latest_posts
   end
 
   # GET /authors/new
@@ -28,7 +31,9 @@ class AuthorsController < ApplicationController
       if @author.save
         format.js
       else
-        format.js
+        format.js do
+          render json: @author.errors, status: :unprocessable_entity
+        end
       end
     end
   end
@@ -39,18 +44,10 @@ class AuthorsController < ApplicationController
       if @author.update(author_params)
         format.js
       else
-        format.js
+        format.js do
+          render json: @author.errors, status: :unprocessable_entity
+        end
       end
-    end
-  end
-
-  # DELETE /authors/1 or /authors/1.json
-  def destroy
-    @author.destroy
-
-    respond_to do |format|
-      format.html { redirect_to authors_url, notice: "Author was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 

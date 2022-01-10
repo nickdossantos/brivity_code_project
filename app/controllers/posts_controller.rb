@@ -1,14 +1,20 @@
 class PostsController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[index show]
   before_action :set_author, only: %i[show create]
   before_action :set_post, only: %i[show edit update destroy]
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.order(created_at: :desc).page(params[:page] || 1).per(5)
   end
 
   # GET /posts/1 or /posts/1.json
   def show
+    @comments = @post.comments.order(created_at: :desc).page(params[:page] || 1).per(3)
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   # GET /posts/new
@@ -20,37 +26,20 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1/edit
-  def edit; end
+  def edit
+    respond_to do |format|
+      format.js
+      format.html { head :not_found }
+    end
+  end
 
   # POST /posts or /posts.json
   def create
-    @post = PostService.create_new(@author, post_params)
+    params[:user_id] = author.id
+    @post = Post.new(params)
     @post.save
     respond_to do |format|
       format.js
-    end
-  end
-
-  # PATCH/PUT /posts/1 or /posts/1.json
-  def update
-    respond_to do |format|
-      if @post.update(post_params)
-        format.html { redirect_to post_url(@post), notice: "Post was successfully updated." }
-        format.json { render :show, status: :ok, location: @post }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /posts/1 or /posts/1.json
-  def destroy
-    @post.destroy
-
-    respond_to do |format|
-      format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 
