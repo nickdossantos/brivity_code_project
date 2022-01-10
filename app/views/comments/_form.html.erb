@@ -13,6 +13,8 @@
 
   <div class="field">
     <%= form.text_area :body, id: 'comment-text-area-input', class: "form-control"%>
+    <%= form.hidden_field :user_id, value: author.id%>
+    <%= form.hidden_field :post_id, value: post.id %>
   </div>
 
   <div class="actions">

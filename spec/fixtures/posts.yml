@@ -1,0 +1,5 @@
+one:
+  id: 1
+  title: Test Post title
+  body: Test post's body
+  user_id: 1

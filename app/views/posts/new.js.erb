@@ -1,2 +1,2 @@
-$('#postModal .modal-content').html('<%= j render partial: "form", locals: { post: @post } %>');
+$('#postModal .modal-content').html('<%= j render partial: "form", locals: { post: @post, author: @author} %>');
 $('#postModal').modal('show');

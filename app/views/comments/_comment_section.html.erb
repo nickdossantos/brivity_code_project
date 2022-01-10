@@ -6,7 +6,7 @@
     <%= render partial: 'comments/comment_item', collection: comments, as: :comment%>
   </ul>
   <br>
-  <span class="float: right"><%= paginate comments, remote: true %> </span>
+  <span class="float: right"><%= paginate comments, remote: true if comments%> </span>
   <p>Add comment</p>
   <%= render partial: 'comments/form', locals: { author: post.author, post: post, comment: Comment.new } %>
 </div>

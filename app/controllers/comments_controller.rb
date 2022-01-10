@@ -5,19 +5,15 @@ class CommentsController < ApplicationController
 
   # GET /comments or /comments.json
   def index
-    @comments = @post.comments.order(created_at: :desc).page(params[:page] || 1).per(3)
-    # @comments = @post.comments.order(created_at: :desc)
+    @comments = @post.comments.page(params[:page] || 1).per(5)
     respond_to do |format|
-      format.js { render 'index.js.erb' }
+      format.js
       format.html
     end
-    # @comments = Comment.all
-    # render "index", layout: false
   end
 
   # GET /comments/1 or /comments/1.json
-  def show
-  end
+  def show; end
 
   # GET /comments/new
   def new
@@ -25,21 +21,16 @@ class CommentsController < ApplicationController
   end
 
   # GET /comments/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /comments or /comments.json
   def create
-    # create comment service to pass user_id and post_id
-    new_params = comment_params
-    new_params[:user_id] = current_user.id
-    new_params[:post_id] = params[:post_id].to_i
-    @comment = Comment.new(new_params)
+    @comment = Comment.new(comment_params)
     respond_to do |format|
       if @comment.save
         format.js
       else
-        format.js
+        format.js { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
   end

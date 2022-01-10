@@ -1,25 +1,29 @@
 require 'rails_helper'
 
-RSpec.describe "posts/index", type: :view do
+RSpec.describe 'posts/index', type: :view do
+  fixtures :authors
+
   before(:each) do
-    assign(:posts, [
-      Post.create!(
-        title: "Title",
-        body: "MyText",
-        user_id: 2
-      ),
-      Post.create!(
-        title: "Title",
-        body: "MyText",
-        user_id: 2
-      )
-    ])
+    assign(:posts, Kaminari.paginate_array([
+                                             Post.create!(
+                                               title: 'Title',
+                                               body: 'MyText',
+                                               user_id: 2
+                                             ),
+                                             Post.create!(
+                                               title: 'Title',
+                                               body: 'MyText',
+                                               user_id: 2
+                                             )
+                                           ]).page(1))
   end
 
-  it "renders a list of posts" do
+  it 'renders a list of posts' do
+    author = authors(:one)
+    login_as(author)
     render
-    assert_select "tr>td", text: "Title".to_s, count: 2
-    assert_select "tr>td", text: "MyText".to_s, count: 2
-    assert_select "tr>td", text: 2.to_s, count: 2
+    assert_select 'ul' do
+      assert_select 'li', 2
+    end
   end
 end

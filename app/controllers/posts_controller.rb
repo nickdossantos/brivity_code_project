@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
-  before_action :set_author, only: %i[show create]
+  before_action :set_author, only: %i[show new]
   before_action :set_post, only: %i[show edit update destroy]
 
   # GET /posts or /posts.json
@@ -10,7 +10,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
-    @comments = @post.comments.order(created_at: :desc).page(params[:page] || 1).per(3)
+    @comments = @post.comments.page(params[:page] || 1).per(5)
     respond_to do |format|
       format.js
       format.html
@@ -35,11 +35,13 @@ class PostsController < ApplicationController
 
   # POST /posts or /posts.json
   def create
-    params[:user_id] = author.id
-    @post = Post.new(params)
-    @post.save
+    @post = Post.new(post_params)
     respond_to do |format|
-      format.js
+      if @post.save
+        format.js
+      else
+        format.js { render json: @post.errors, status: :unprocessable_entity }
+      end
     end
   end
 

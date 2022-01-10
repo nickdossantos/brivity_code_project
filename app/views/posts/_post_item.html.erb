@@ -5,5 +5,5 @@
   <p><%= post.body %> <p>
   <p>Created By: <%= link_to post.author.full_name.blank? ? post.author.email : post.author.full_name, author_path(post.author)%> </p>
   <%= link_to 'View More', post_path(post) %>
-  <span style="float: right;">Created on: <%= post.created_at&.strftime("%m/%d/%Y") %> <span>
+  <span style="float: right;">Created on: <%= post.created_at&.strftime("%m/%d/%Y at %I:%M%p")  %> <span>
 </li>
