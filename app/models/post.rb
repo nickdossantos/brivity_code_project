@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
-  belongs_to :user
   belongs_to :author, foreign_key: 'user_id', class_name: 'Author', inverse_of: :posts
-  has_many :comments
+  has_many :comments, -> { order(created_at: :asc) }
 
-  accepts_nested_attributes_for :comments
+  validates :title, presence: true
+  validates :body, presence: true
 end

@@ -1,13 +1,18 @@
 <div class="col-lg-3 col-sm-6 ">
   <div class="card h-100">
-    <div class="card-header p-0 position-relative">
-    </div>
-    <div class="card-body px-0">
-      <h5>
+    <div class="card-header position-relative">
+      <h5 class="card-title">
         <%= link_to post.title, post_path(post) %>
       </h5>
-      <p><%=post.body%></p>
-      <%= link_to "Read more", post_path(post) %>
+    </div>
+    <div class="card-body">
+      <p class="card-text"><%= (post.body&.length || 0 ) < 60 ? post.body : truncate(post.body, :length => 60) %></p>
+    
+      
+      <span><%= link_to "Read more", post_path(post) %> </span>
+    </div>
+    <div class="card-footer text-muted">
+      Created: <%= post.created_at&.strftime("%m/%d/%Y") %> <span>
     </div>
   </div>
 </div>

@@ -3,8 +3,9 @@
     <div class="col-lg-3 col-sm-6">
       <p><%= link_to comment.author.full_name.blank? ? comment.author.email : comment.author.full_name, author_path(comment.author)%>: </p>
     </div>
-    <div class="col-lg-3 col-sm-6">
+    <div class="col-lg-9 col-sm-6">
       <p><%= comment.body %> <p>
     </div>
+    <span style="float: right;">Created on: <%= comment.created_at&.strftime("%m/%d/%Y at %I:%M%p") %> <span>
   </div>
 </li>

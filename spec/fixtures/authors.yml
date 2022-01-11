@@ -1,0 +1,10 @@
+one:
+  id: 1
+  first_name: Marko
+  last_name: Anastasov
+  email: marko@test.com
+two:
+  id: 2
+  first_name: Nico
+  last_name: Sindil
+  email: nico@test.com

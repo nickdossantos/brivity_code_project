@@ -32,7 +32,7 @@ class AuthorsController < ApplicationController
         format.js
       else
         format.js do
-          render json: @author.errors, status: :unprocessable_entity
+          format.js { render json: @author.errors, status: :unprocessable_entity }
         end
       end
     end

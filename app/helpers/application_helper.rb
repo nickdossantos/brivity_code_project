@@ -3,8 +3,8 @@ module ApplicationHelper
     :user
   end
 
-  def resource
-    @resource ||= User.new
+  def devise_resource
+    @devise_resource ||= User.new
   end
 
   def devise_mapping
